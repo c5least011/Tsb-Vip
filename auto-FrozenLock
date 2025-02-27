@@ -1,0 +1,14 @@
+local folder = game.Workspace:WaitForChild("Thrown")  
+local player = game.Players.LocalPlayer  
+
+while true do  
+    local obj = folder:FindFirstChild("Frozen Lock")  
+    local char = player.Character or player.CharacterAdded:Wait()  
+    local hrp = char:FindFirstChild("HumanoidRootPart")  
+
+    if obj and hrp then  
+        hrp.CFrame = obj:IsA("Model") and obj.PrimaryPart and obj.PrimaryPart.CFrame or obj.CFrame  
+    end  
+
+    wait(1)  
+end
