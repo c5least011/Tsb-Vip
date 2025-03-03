@@ -47,6 +47,7 @@ local function followDummy()
     end)
 end
 
+-- Tạo GUI
 local gui = Instance.new("ScreenGui", game.CoreGui)
 local frame = Instance.new("Frame", gui)
 local title = Instance.new("TextLabel", frame)
@@ -59,6 +60,7 @@ frame.Position = UDim2.new(0.5, -100, 0.5, -75)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.Active = true
 frame.Draggable = true
+frame.Visible = false
 
 title.Size = UDim2.new(1, 0, 0, 30)
 title.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
@@ -106,3 +108,43 @@ end)
 stopBtn.MouseButton1Click:Connect(function()
     running = false
 end)
+
+-- Key System
+local keySystem = Instance.new("Frame", gui)
+local keyTitle = Instance.new("TextLabel", keySystem)
+local keyInput = Instance.new("TextBox", keySystem)
+local keyCheck = Instance.new("TextButton", keySystem)
+local keyDiscord = Instance.new("TextButton", keySystem)
+
+keySystem.Size = UDim2.new(0, 200, 0, 120)
+keySystem.Position = UDim2.new(0.5, -100, 0.5, -60)
+keySystem.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+keyTitle.Size = UDim2.new(1, 0, 0, 30)
+keyTitle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+keyTitle.Font = Enum.Font.SourceSansBold
+keyTitle.Text = "Nhập Key"
+keyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyTitle.TextSize = 20
+
+keyInput.Size = UDim2.new(0, 180, 0, 30)
+keyInput.Position = UDim2.new(0, 10, 0, 40)
+keyInput.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+keyInput.Font = Enum.Font.SourceSans
+keyInput.PlaceholderText = "Nhập key..."
+keyInput.Text = ""
+keyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyInput.TextSize = 18
+
+keyCheck.Size = UDim2.new(0, 85, 0, 30)
+keyCheck.Position = UDim2.new(0, 10, 0, 80)
+keyCheck.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+keyCheck.Font = Enum.Font.SourceSansBold
+keyCheck.Text = "Check Key"
+keyCheck.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyCheck.TextSize = 18
+
+keyDiscord.Size = UDim2.new(0, 85, 0, 30)
+keyDiscord.Position = UDim2.new(0, 105, 0, 80)
+keyDiscord.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+keyDiscord
