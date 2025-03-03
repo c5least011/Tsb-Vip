@@ -1,53 +1,3 @@
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local Title = Instance.new("TextLabel")
-local PlayersButton = Instance.new("TextButton")
-local DummyButton = Instance.new("TextButton")
-local StopButton = Instance.new("TextButton")
-
-ScreenGui.Parent = game.CoreGui
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Frame.Size = UDim2.new(0, 200, 0, 150)
-Frame.Position = UDim2.new(0.5, -100, 0.5, -75)
-Frame.Active = true
-Frame.Draggable = true
-
-Title.Parent = Frame
-Title.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-Title.Size = UDim2.new(1, 0, 0, 30)
-Title.Font = Enum.Font.SourceSansBold
-Title.Text = "C5_TSB"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextSize = 20
-
-PlayersButton.Parent = Frame
-PlayersButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
-PlayersButton.Position = UDim2.new(0, 10, 0, 40)
-PlayersButton.Size = UDim2.new(0, 180, 0, 30)
-PlayersButton.Font = Enum.Font.SourceSansBold
-PlayersButton.Text = "Players"
-PlayersButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-PlayersButton.TextSize = 18
-
-DummyButton.Parent = Frame
-DummyButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
-DummyButton.Position = UDim2.new(0, 10, 0, 80)
-DummyButton.Size = UDim2.new(0, 180, 0, 30)
-DummyButton.Font = Enum.Font.SourceSansBold
-DummyButton.Text = "Dummy"
-DummyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-DummyButton.TextSize = 18
-
-StopButton.Parent = Frame
-StopButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-StopButton.Position = UDim2.new(0, 10, 0, 120)
-StopButton.Size = UDim2.new(0, 180, 0, 30)
-StopButton.Font = Enum.Font.SourceSansBold
-StopButton.Text = "Stop"
-StopButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-StopButton.TextSize = 18
-
 local p = game.Players.LocalPlayer
 local running = false
 
@@ -74,7 +24,7 @@ local function followPlayers()
             else
                 break
             end
-            task.wait(0.1)
+            task.wait(0.001)
         until not target.Character or not target.Character.Parent
     end
 end
@@ -86,7 +36,7 @@ local function followDummy()
 
     while running and d and d.Parent and t and t.Parent do
         p.Character.HumanoidRootPart.CFrame = t.CFrame * CFrame.new(0, 0, 3)
-        task.wait(0.1)
+        task.wait(0.001)
     end
 
     d.AncestryChanged:Connect(function()
@@ -97,18 +47,62 @@ local function followDummy()
     end)
 end
 
-PlayersButton.MouseButton1Click:Connect(function()
+local gui = Instance.new("ScreenGui", game.CoreGui)
+local frame = Instance.new("Frame", gui)
+local title = Instance.new("TextLabel", frame)
+local playersBtn = Instance.new("TextButton", frame)
+local dummyBtn = Instance.new("TextButton", frame)
+local stopBtn = Instance.new("TextButton", frame)
+
+frame.Size = UDim2.new(0, 200, 0, 150)
+frame.Position = UDim2.new(0.5, -100, 0.5, -75)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.Active = true
+frame.Draggable = true
+
+title.Size = UDim2.new(1, 0, 0, 30)
+title.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+title.Font = Enum.Font.SourceSansBold
+title.Text = "C5_TSB"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 20
+
+playersBtn.Size = UDim2.new(0, 180, 0, 30)
+playersBtn.Position = UDim2.new(0, 10, 0, 40)
+playersBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+playersBtn.Font = Enum.Font.SourceSansBold
+playersBtn.Text = "Players"
+playersBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+playersBtn.TextSize = 18
+
+dummyBtn.Size = UDim2.new(0, 180, 0, 30)
+dummyBtn.Position = UDim2.new(0, 10, 0, 80)
+dummyBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+dummyBtn.Font = Enum.Font.SourceSansBold
+dummyBtn.Text = "Dummy"
+dummyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+dummyBtn.TextSize = 18
+
+stopBtn.Size = UDim2.new(0, 180, 0, 30)
+stopBtn.Position = UDim2.new(0, 10, 0, 120)
+stopBtn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+stopBtn.Font = Enum.Font.SourceSansBold
+stopBtn.Text = "Stop"
+stopBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+stopBtn.TextSize = 18
+
+playersBtn.MouseButton1Click:Connect(function()
     running = false
     task.wait(0.2)
     task.spawn(followPlayers)
 end)
 
-DummyButton.MouseButton1Click:Connect(function()
+dummyBtn.MouseButton1Click:Connect(function()
     running = false
     task.wait(0.2)
     task.spawn(followDummy)
 end)
 
-StopButton.MouseButton1Click:Connect(function()
+stopBtn.MouseButton1Click:Connect(function()
     running = false
 end
