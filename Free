@@ -149,7 +149,7 @@ keyDiscord.Size = UDim2.new(0, 85, 0, 30)
 keyDiscord.Position = UDim2.new(0, 105, 0, 80)
 keyDiscord.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
 keyDiscord.Font = Enum.Font.SourceSansBold
-keyDiscord.Text = "Key ở Dis
+keyDiscord.Text = "Key ở Dis"
 keyDiscord.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyDiscord.TextSize = 18
 
