@@ -154,7 +154,7 @@ keyDiscord.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyDiscord.TextSize = 18
 
 keyCheck.MouseButton1Click:Connect(function()
-    if keyInput.Text == "free" then
+    if keyInput.Text == "occak" then
         keySystem.Visible = false
         frame.Visible = true
     else
